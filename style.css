@@ -244,3 +244,14 @@ button:hover {
   margin-bottom: 20px;
 }
 
+/*styling for hidden in browser error popup */
+#messageBox {
+  margin: 20px auto;
+  padding: 15px;
+  max-width: 600px;
+  background: #222;
+  border: 1px solid crimson;
+  color: white;
+  border-radius: 10px;
+  font-size: 1rem;
+}

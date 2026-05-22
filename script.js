@@ -1,9 +1,11 @@
 // =====================
 // Configuration
 // =====================
+// const API_KEY = "YOUR_API_KEY_HERE";
 const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = "9f945a81be77f4cd26863f5beb5374aa";
-//for live demo purposes API KEY is still active. If not, you will need to make a TMDB account and apply for key in order to get data to flow into website.
+
+const API_KEY = "9f945a81be77f4cd26863f5beb5374aa"; //will be deleted in github version for privacy
+//need to make a TMDB account and apply for key in order to get data to flow into website.
 
 // =====================
 // DOM Elements
@@ -37,8 +39,35 @@ spinAgainBtn.addEventListener("click", () => {
   getMovie(true);
 });
 
+
+
+function resetUI() {
+  movieTitle.textContent = "Ready to spin?";
+  movieDesc.textContent = "";
+  movieRating.textContent = "";
+  movieYear.textContent = "";
+
+  document.getElementById("moviePlaceholder").style.display = "block";
+  movieDisplay.classList.add("hidden");
+
+  randomizeBtn.disabled = false;
+  spinAgainBtn.disabled = false;
+}
+
+
+
+
+
+
+
+
 // Main movie retrieval function
 async function getMovie(spinAgain) {
+//while fetching movies, introduce load state. for ease of user experience, buttons are disabled.
+movieTitle.textContent = "Loading...";
+randomizeBtn.disabled = true;
+spinAgainBtn.disabled = true;
+
   const genre = document.getElementById("genreSelect").value;
   const yearRange = document.getElementById("yearRange").value;
   const actorName = document.getElementById("actorInput").value.trim();
@@ -74,7 +103,8 @@ async function getMovie(spinAgain) {
   const firstData = await firstResponse.json();
 
   if (!firstData.results.length) {
-    alert("No movies found for these filters.");
+    showMessage("No movies found for these filters. Try different options.");
+    resetUI(); //resetUI rather than alert
     return;
   }
 
@@ -100,12 +130,19 @@ async function getMovie(spinAgain) {
   }
 
   if (!chosen) {
-    alert("You've seen too many movies for these filters. Try changing them.");
+    showMessage("No new movies left for these filters. Try changing filters.");
+    resetUI();
     return;
   }
 
   displayMovie(chosen);
   addToHistory(chosen);
+
+
+  //reenable buttons after loading state
+  randomizeBtn.disabled = false;
+  spinAgainBtn.disabled = false;
+
 }
 
 document.addEventListener("keydown", (event) => {
@@ -143,6 +180,8 @@ function displayMovie(movie) {
     movie.release_date?.split("-")[0] || "N/A"
   }`;
 }
+
+
 
 // Add movie to history
 function addToHistory(movie) {
@@ -189,3 +228,5 @@ clearHistoryBtn.addEventListener("click", () => {
   localStorage.removeItem("spinHistory");
   renderHistory();
 });
+
+
