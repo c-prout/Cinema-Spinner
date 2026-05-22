@@ -2,8 +2,8 @@
 // Configuration
 // =====================
 const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = "API_KEY_GOES_HERE";
-//need to make a TMDB account and apply for key in order to get data to flow into website.
+const API_KEY = "9f945a81be77f4cd26863f5beb5374aa";
+//for live demo purposes API KEY is still active. If not, you will need to make a TMDB account and apply for key in order to get data to flow into website.
 
 // =====================
 // DOM Elements
