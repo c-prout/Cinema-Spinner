@@ -149,6 +149,7 @@ button:hover {
 #poster {
    width: 320px;
   border-radius: 16px;
+  max-width: 100;
 }
 
 .hidden {
@@ -194,12 +195,35 @@ button:hover {
   font-size: 0.85rem;
 }
 
+
 .logo {
   display: flex;
   align-items: center;
-  gap: 16px;        
-  margin: 20px;    
+  gap: 12px;
+  margin: -60px -100px -10px;
 }
+
+.logo-image {
+  display: block;
+  width: 300px;
+  height:200px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-text .cinema {
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
 
 .logo-icon {
   width: 64px;
@@ -224,6 +248,7 @@ button:hover {
   font-family: 'Playfair Display', serif;
   font-size: 1.25rem;
   line-height: 1.1;
+  margin: 0px -100px;
 }
 
 .logo-text .spinner {
@@ -231,6 +256,7 @@ button:hover {
   font-weight: 700;
   letter-spacing: 3px;
   font-size: 1.6rem; 
+  margin: 0px -80px;
 }
 
 .app-header {
